@@ -31,6 +31,8 @@ jobs:
     #   run: mvn -B package --file pom.xml
     - name: create kube folder
       run: |
+        echo ${PWD}
+        ls
         mkdir ${HOME}/.kube
         cd ${HOME}/.kube
         touch config
