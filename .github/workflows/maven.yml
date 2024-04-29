@@ -40,8 +40,6 @@ jobs:
       with:
         base64: ${{ secrets.KUBE_CONFIG }}
         output-path: /home/runner/.kube/config
-    - run: |
-        echo ${{ steps.decode-base64.outputs.decoded }}
     # - name: kubeconfig setup
     #   run: |
     #     env:
