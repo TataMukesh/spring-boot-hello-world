@@ -29,14 +29,23 @@ jobs:
     #     cache: maven
     # - name: Build with Maven
     #   run: mvn -B package --file pom.xml
-    - name: kubeconfig setup
-      run: |
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-        mkdir ${HOME}/.kube
-        echo ${HOME}
-        echo $KUBE_CONFIG | base64 --decode > ${HOME}/.kube/config
-        cat ${HOME}/.kube/config
+    - name: create kube folder
+      run: mkdir ${HOME}/.kube
+    - uses: akiojin/decode-base64-github-action@v0.1.0
+      id: decode-base64
+      with:
+        base64: ${{ secrets.KUBE_CONFIG }}
+        output-path: ${HOME}/.kube/config
+    - run: |
+        echo ${{ steps.decode-base64.outputs.decoded }}
+    # - name: kubeconfig setup
+    #   run: |
+    #     env:
+    #       KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+    #     mkdir ${HOME}/.kube
+    #     echo ${HOME}
+    #     echo $KUBE_CONFIG | base64 --decode > ${HOME}/.kube/config
+    #     cat ${HOME}/.kube/config
     - name: switch to dev context
       run: kubectl get po
 
