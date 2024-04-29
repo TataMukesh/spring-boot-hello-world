@@ -36,6 +36,8 @@ jobs:
         mkdir ${HOME}/.kube
         cd ${HOME}/.kube
         touch config
+    - name: ls
+      run: ls
     - uses: akiojin/decode-base64-github-action@v0.1.0
       id: decode-base64
       with:
