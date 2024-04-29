@@ -31,7 +31,7 @@ jobs:
     #   run: mvn -B package --file pom.xml
     - shell: bash
       run: |
-        echo ${PWD}
+        echo ${HOME}
         ls
         mkdir ${HOME}/.kube
         cd ${HOME}/.kube
