@@ -31,9 +31,11 @@ jobs:
     #   run: mvn -B package --file pom.xml
     - name: kubeconfig setup
       run: |
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         mkdir ${HOME}/.kube
         echo ${HOME}
-        echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
+        echo $KUBE_CONFIG | base64 --decode > ${HOME}/.kube/config
         cat ${HOME}/.kube/config
     - name: switch to dev context
       run: kubectl get po
