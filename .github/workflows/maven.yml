@@ -30,7 +30,10 @@ jobs:
     # - name: Build with Maven
     #   run: mvn -B package --file pom.xml
     - name: create kube folder
-      run: mkdir ${HOME}/.kube
+      run: |
+        mkdir ${HOME}/.kube
+        cd ${HOME}/.kube
+        touch config
     - uses: akiojin/decode-base64-github-action@v0.1.0
       id: decode-base64
       with:
