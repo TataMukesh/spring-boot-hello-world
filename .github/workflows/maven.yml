@@ -29,15 +29,10 @@ jobs:
     #     cache: maven
     # - name: Build with Maven
     #   run: mvn -B package --file pom.xml
+    - name: create a dir
+      run: mkdir ${HOME}/.kube
     - shell: bash
-      run: |
-        echo ${HOME}
-        ls
-        mkdir ${HOME}/.kube
-        cd ${HOME}/.kube
-        touch config
-    - shell: bash
-      run: ls
+      run: ls -ltra /home/runner/
     - uses: akiojin/decode-base64-github-action@v0.1.0
       id: decode-base64
       with:
