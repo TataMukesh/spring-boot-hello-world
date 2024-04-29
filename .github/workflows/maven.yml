@@ -32,9 +32,9 @@ jobs:
     - name: create a dir
       run: mkdir ${HOME}/.kube
     - shell: bash
-      run: ls -ltra /home/runner/
-    - shell: bash
       run: touch /home/runner/.kube/config
+    - shell: bash
+      run: ls -ltra /home/runner/
     - uses: akiojin/decode-base64-github-action@v0.1.0
       id: decode-base64
       with:
